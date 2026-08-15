@@ -172,11 +172,13 @@ export function App() {
         })
       });
 
+      const contentType = res.headers.get('content-type') || '';
       let data: any = {};
-      try {
+      if (contentType.includes('application/json')) {
         data = await res.json();
-      } catch {
-        throw new Error(`Server returned status ${res.status} (${res.statusText || 'Response Error'})`);
+      } else {
+        const text = await res.text();
+        throw new Error(`Server returned unexpected response (${res.status} ${res.statusText || 'Error'}): ${text.slice(0, 150)}`);
       }
 
       // Merge newly completed scenes with existing scenes without duplicate numbers
@@ -265,11 +267,13 @@ export function App() {
         })
       });
 
+      const contentType = res.headers.get('content-type') || '';
       let data: any = {};
-      try {
+      if (contentType.includes('application/json')) {
         data = await res.json();
-      } catch {
-        throw new Error(`Server returned status ${res.status} (${res.statusText || 'Response Error'})`);
+      } else {
+        const text = await res.text();
+        throw new Error(`Server returned unexpected response (${res.status} ${res.statusText || 'Error'}): ${text.slice(0, 150)}`);
       }
 
       const newlyCompleted: VideoPromptItem[] = data.prompts || data.completedPrompts || [];
