@@ -1,0 +1,8 @@
+{
+  "name": "Remix HEVI Visual Production Studio",
+  "description": "Local-first AI video-production planning application for HEVI V2 JSON and VO transcripts.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
